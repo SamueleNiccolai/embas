@@ -8,10 +8,68 @@
     <artifactId>embas</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>embas</name>
+    <description>EMBedded Application Server</description>
+
+    <packaging>pom</packaging>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--
+            Dependency versions. Please keep alphabetical.
+
+            Each version property should be of the form "version.<groupId>".
+            For example: <version.org.jboss.as>
+
+            In cases where multiple artifacts use the same groupId but have different
+            versions, add the artifactId or other qualifier to the property name.
+            For example: <version.org.jboss.as.console>
+         -->
+
+        <version.junit>5.13.4</version.junit>
+
+        <!-- Surefire args -->
+        <surefire.jpda.args/>
+        <surefire.system.args>-da ${surefire.jpda.args}</surefire.system.args>
+
+        <!-- Checkstyle configuration -->
+        <linkXRef>false</linkXRef>
     </properties>
+
+    <!-- Import one or more BOMs -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Example: Junit 5 BOM -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${version.junit}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- You can import multiple BOMs. Order matters: last wins on conflicts. -->
+            <!--
+            <dependency>
+              <groupId>com.fasterxml.jackson</groupId>
+              <artifactId>jackson-bom</artifactId>
+              <version>2.17.2</version>
+              <type>pom</type>
+              <scope>import</scope>
+            </dependency>
+            -->
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
