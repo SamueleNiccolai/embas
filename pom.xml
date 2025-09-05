@@ -39,6 +39,12 @@
         <linkXRef>false</linkXRef>
     </properties>
 
+    <modules>
+        <module>build-config</module>
+        <module>parser-generator</module>
+        <module>core</module>
+    </modules>
+
     <!-- Import one or more BOMs -->
     <dependencyManagement>
         <dependencies>
